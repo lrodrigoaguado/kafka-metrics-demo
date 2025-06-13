@@ -1,0 +1,535 @@
+{
+    "version": 1,
+    "partitions": [
+        {
+            "topic": "__consumer_offsets",
+            "partition": 0,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 1,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 2,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 3,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 4,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 5,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 6,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 7,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 8,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 9,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 10,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 11,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 12,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 13,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 14,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 15,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 16,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 17,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 18,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 19,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 20,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 21,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 22,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 23,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 24,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 25,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 26,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 27,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 28,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 29,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 30,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 31,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 32,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 33,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 34,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 35,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 36,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 37,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 38,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 39,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 40,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 41,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 42,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 43,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 44,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 45,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 46,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 47,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 48,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "__consumer_offsets",
+            "partition": 49,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "test-topic",
+            "partition": 0,
+            "replicas": [
+                4
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "test-topic",
+            "partition": 1,
+            "replicas": [
+                5
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "test-topic",
+            "partition": 2,
+            "replicas": [
+                6
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        }
+    ]
+}

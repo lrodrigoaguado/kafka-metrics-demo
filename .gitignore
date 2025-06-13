@@ -1,0 +1,18 @@
+# Gradle
+clients/gradle/
+clients/.gradle/
+clients/build/
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDEs
+.DS_Store
+.vscode
+.idea/
+.idea/*
+*.iws
+*.iml
+*.ipr

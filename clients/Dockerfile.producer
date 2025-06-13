@@ -1,0 +1,14 @@
+FROM gradle:8.13-jdk21 AS build
+WORKDIR /app
+
+COPY --chown=gradle:gradle . .
+
+RUN gradle build && gradle shadowJar
+
+FROM openjdk:21-jdk-slim
+WORKDIR /app
+
+COPY --from=build /app/build/libs/java-client-0.0.1.jar /app/java-client.jar
+COPY --from=build /app/client.properties /app/client.properties
+
+CMD ["java", "-cp", "/app/java-client.jar", "example.SimpleProducer"]

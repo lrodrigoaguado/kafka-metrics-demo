@@ -1,0 +1,278 @@
+services:
+  controller-1:
+    image: apache/kafka-native:${KAFKA_VERSION:-3.9.1}
+    hostname: controller-1
+    container_name: controller-1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: 'controller'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@controller-1:9093,2@controller-2:9093,3@controller-3:9093'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_LISTENERS: 'CONTROLLER://:9093'
+      CLUSTER_ID: 'kafka-test-metrics-cluster'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+
+  controller-2:
+    image: apache/kafka-native:${KAFKA_VERSION:-3.9.1}
+    hostname: controller-2
+    container_name: controller-2
+    environment:
+      KAFKA_NODE_ID: 2
+      KAFKA_PROCESS_ROLES: 'controller'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@controller-1:9093,2@controller-2:9093,3@controller-3:9093'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_LISTENERS: 'CONTROLLER://:9093'
+      CLUSTER_ID: 'kafka-test-metrics-cluster'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+
+  controller-3:
+    image: apache/kafka-native:${KAFKA_VERSION:-3.9.1}
+    hostname: controller-3
+    container_name: controller-3
+    environment:
+      KAFKA_NODE_ID: 3
+      KAFKA_PROCESS_ROLES: 'controller'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@controller-1:9093,2@controller-2:9093,3@controller-3:9093'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_LISTENERS: 'CONTROLLER://:9093'
+      CLUSTER_ID: 'kafka-test-metrics-cluster'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+
+  kafka-1:
+    image: apache/kafka:${KAFKA_VERSION:-3.9.1}
+    hostname: kafka-1
+    container_name: kafka-1
+    ports:
+      - "19092:19092" # External client port mapped to default Kafka port 9092
+      - "7071:7071"  # JMX Exporter port
+    volumes:
+      - ./jmx-exporter/jmx_prometheus_javaagent-1.2.0.jar:/opt/kafka/libs/jmx_prometheus_javaagent.jar
+      - ./jmx-exporter/prometheus-jmx-config.yml:/opt/kafka/config/prometheus-jmx-config.yml
+    environment:
+      CLUSTER_ID: 'kafka-test-metrics-cluster'
+      KAFKA_NODE_ID: 4
+      KAFKA_PROCESS_ROLES: 'broker'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@controller-1:9093,2@controller-2:9093,3@controller-3:9093'
+      KAFKA_LISTENERS: 'INTERNAL://:9092,EXTERNAL://:19092'
+      KAFKA_ADVERTISED_LISTENERS: 'INTERNAL://kafka-1:9092,EXTERNAL://localhost:19092'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'INTERNAL'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_MIN_INSYNC_REPLICAS: 1
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_OPTS: "-javaagent:/opt/kafka/libs/jmx_prometheus_javaagent.jar=7071:/opt/kafka/config/prometheus-jmx-config.yml"
+      TZ: "Europe/Madrid"
+    depends_on:
+      - controller-1
+      - controller-2
+      - controller-3
+
+  kafka-2:
+    image: apache/kafka:${KAFKA_VERSION:-3.9.1}
+    hostname: kafka-2
+    container_name: kafka-2
+    ports:
+      - "29092:29092"
+      - "7072:7072"
+    volumes:
+      - ./jmx-exporter/jmx_prometheus_javaagent-1.2.0.jar:/opt/kafka/libs/jmx_prometheus_javaagent.jar
+      - ./jmx-exporter/prometheus-jmx-config.yml:/opt/kafka/config/prometheus-jmx-config.yml
+    environment:
+      CLUSTER_ID: 'kafka-test-metrics-cluster'
+      KAFKA_NODE_ID: 5
+      KAFKA_PROCESS_ROLES: 'broker'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@controller-1:9093,2@controller-2:9093,3@controller-3:9093'
+      KAFKA_LISTENERS: 'INTERNAL://:9092,EXTERNAL://:29092'
+      KAFKA_ADVERTISED_LISTENERS: 'INTERNAL://kafka-2:9092,EXTERNAL://localhost:29092'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'INTERNAL'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_MIN_INSYNC_REPLICAS: 1
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_OPTS: "-javaagent:/opt/kafka/libs/jmx_prometheus_javaagent.jar=7072:/opt/kafka/config/prometheus-jmx-config.yml"
+      TZ: "Europe/Madrid"
+    depends_on:
+      - controller-1
+      - controller-2
+      - controller-3
+
+  kafka-3:
+    image: apache/kafka:${KAFKA_VERSION:-3.9.1}
+    hostname: kafka-3
+    container_name: kafka-3
+    ports:
+      - "39092:39092"
+      - "7073:7073"
+    volumes:
+      - ./jmx-exporter/jmx_prometheus_javaagent-1.2.0.jar:/opt/kafka/libs/jmx_prometheus_javaagent.jar
+      - ./jmx-exporter/prometheus-jmx-config.yml:/opt/kafka/config/prometheus-jmx-config.yml
+    environment:
+      CLUSTER_ID: 'kafka-test-metrics-cluster'
+      KAFKA_NODE_ID: 6
+      KAFKA_PROCESS_ROLES: 'broker'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@controller-1:9093,2@controller-2:9093,3@controller-3:9093'
+      KAFKA_LISTENERS: 'INTERNAL://:9092,EXTERNAL://:39092'
+      KAFKA_ADVERTISED_LISTENERS: 'INTERNAL://kafka-3:9092,EXTERNAL://localhost:39092'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'INTERNAL'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_MIN_INSYNC_REPLICAS: 1
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_OPTS: "-javaagent:/opt/kafka/libs/jmx_prometheus_javaagent.jar=7073:/opt/kafka/config/prometheus-jmx-config.yml"
+      TZ: "Europe/Madrid"
+    depends_on:
+      - controller-1
+      - controller-2
+      - controller-3
+
+  kafka-exporter:
+    image: danielqsj/kafka-exporter:latest
+    hostname: kafka-exporter
+    container_name: kafka-exporter
+    command:
+      # Point to the internal listeners of your Kafka brokers
+      - "--kafka.server=kafka-1:9092"
+      - "--kafka.server=kafka-2:9092"
+      - "--kafka.server=kafka-3:9092"
+      # Optional: Specify Kafka version if auto-detection fails (usually not needed for 2.x+)
+      - "--kafka.version=${KAFKA_VERSION:-3.9.0}"
+      # Optional: Adjust log level if needed (info, debug, warn, error)
+      - "--log.level=info"
+      # Optional: Specify listen address (default is :9308)
+      # - "--web.listen-address=:9308"
+    ports:
+      - "9308:9308"
+    depends_on:
+      - controller-1
+      - controller-2
+      - controller-3
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:${PROMETHEUS_VERSION:-latest}
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    depends_on:
+      - controller-1
+      - controller-2
+      - controller-3
+      - kafka-1
+      - kafka-2
+      - kafka-3
+
+  grafana:
+    image: grafana/grafana:${GRAFANA_VERSION:-latest}
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: prom-operator
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+    depends_on:
+      - prometheus
+
+  producer:
+    build:
+      context: ./clients
+      dockerfile: Dockerfile.producer
+    container_name: kafka-producer
+    depends_on:
+      - controller-1
+      - controller-2
+      - controller-3
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    volumes:
+      - ./.env:/app/.env
+    environment:
+      LOG_LEVEL: INFO
+
+  single-consumer:
+    build:
+      context: ./clients
+      dockerfile: Dockerfile.consumer
+    container_name: kafka-single-consumer
+    depends_on:
+      - controller-1
+      - controller-2
+      - controller-3
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    volumes:
+      - ./.env:/app/.env
+    environment:
+      NUM_CONSUMERS: 1
+      TOPIC_NAME: "test-topic"
+      GROUP_ID_NAME: "SingleConsumerGroup"
+      LOG_LEVEL: INFO
+
+  multiple-consumer-group:
+    build:
+      context: ./clients
+      dockerfile: Dockerfile.consumer
+    container_name: kafka-multiple-consumers
+    depends_on:
+      - controller-1
+      - controller-2
+      - controller-3
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    volumes:
+      - ./.env:/app/.env
+    environment:
+      NUM_CONSUMERS: 3
+      TOPIC_NAME: "test-topic"
+      GROUP_ID_NAME: "MultipleConsumersGroup"
+      LOG_LEVEL: INFO
+
+volumes:
+  prometheus_data:
+  grafana_data:

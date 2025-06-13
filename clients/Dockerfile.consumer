@@ -1,0 +1,18 @@
+FROM gradle:8.13-jdk21 AS build
+WORKDIR /app
+
+COPY --chown=gradle:gradle . .
+
+RUN gradle build && gradle shadowJar
+
+FROM openjdk:21-jdk-slim
+WORKDIR /app
+
+COPY --from=build /app/build/libs/java-client-0.0.1.jar /app/java-client.jar
+COPY --from=build /app/client.properties /app/client.properties
+COPY --from=build /app/consumer-entrypoint.sh /app/consumer-entrypoint.sh
+
+RUN chmod +x /app/consumer-entrypoint.sh
+
+
+CMD ["/app/consumer-entrypoint.sh"]
