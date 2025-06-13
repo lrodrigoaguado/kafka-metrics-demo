@@ -35,7 +35,7 @@ Once everything has started, you can access Grafana at https://localhost:3000 us
 - Kafka Overview provides a general overview of the status of the cluster
 - Kafka Topics and Consumer Groups provides specific details on topics or condumer groups behaviours
 
-### Updated instructions:
+### Additional instructions:
 
 You can manually start new producers and/or consumers with the following commands:
 
@@ -55,3 +55,13 @@ docker compose down -v
 ```
 
 to stop everything and clean the environment.
+
+### Rebalancing
+
+If the partitions of the cluster are not well balanced among the brokers, you can execute the following command to ensure a correct balance:
+
+```shell
+kafka-reassign-partitions --bootstrap-server localhost:19092 --reassignment-json-file ./etc/cluster-reassignment.json --execute
+```
+
+For this, you need to either have a version of kafka installed locally, or make sure the cluster-reassignment.json is available from any of the broker or controller containers and execute the command inside that container.
