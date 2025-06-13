@@ -1300,8 +1300,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "kafka_consumergroup_lag{topic=\"$topic\", consumergroup=~\"$consumergroup\"}",
+          "editorMode": "builder",
+          "expr": "sum by(consumergroup) (kafka_consumergroup_lag{topic=\"$topic\", consumergroup=~\"$consumergroup\"})",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -2052,5 +2052,5 @@
   "timezone": "",
   "title": "Kafka Topics and Consumer Groups",
   "uid": "kafka-topics",
-  "version": 2
+  "version": 1
 }
